@@ -3,6 +3,7 @@ import Menu from "@/app/components/Menu";
 import Image from "next/image";
 import SearchBar from "@/app/components/SearchBar";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 const NavIcons = dynamic(() => import("@/app/components/NavIcons"), {
   ssr: false,
@@ -36,7 +37,9 @@ export default function Navbar() {
         </div>
         {/* RIGHT */}
         <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-8">
-          <SearchBar />
+          <Suspense>
+            <SearchBar />
+          </Suspense>
           <NavIcons />
         </div>
       </div>
