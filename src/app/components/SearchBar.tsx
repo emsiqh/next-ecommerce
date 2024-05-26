@@ -4,7 +4,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-export default function SearchBar() {
+export default function SearchBar({ placeholder }: { placeholder: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -32,7 +32,7 @@ export default function SearchBar() {
       <input
         type="text"
         name="name"
-        placeholder="Search"
+        placeholder={placeholder}
         className="flex-1 bg-transparent outline-none"
       />
       <button className="cursor-pointer relative">
