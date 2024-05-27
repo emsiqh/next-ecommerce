@@ -6,3 +6,10 @@ export type Product = {
   image_url: string;
   price: number;
 };
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+};
