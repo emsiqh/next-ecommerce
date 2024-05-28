@@ -3,11 +3,7 @@ import { User } from "../definitions";
 import { getUserByEmail } from "../data";
 import { AppDispatch } from "../store";
 
-interface getUserParams {
-  email: string;
-}
-
-export const getUser = async ({ email }: getUserParams) => {
+export const getUser = async (email: string) => {
   try {
     const user = await getUserByEmail(email);
     return user;

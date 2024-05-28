@@ -4,12 +4,30 @@ import Image from "next/image";
 import SearchBar from "@/app/components/SearchBar";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import { getUserByEmail } from "../lib/data";
+import { useAppDispatch } from "../lib/hooks";
+import { setUser } from "../lib/features/user/userSlice";
 
 const NavIcons = dynamic(() => import("@/app/components/NavIcons"), {
   ssr: false,
 });
 
-export default function Navbar() {
+export default async function Navbar() {
+  const email = "user@nextmail.com";
+  const user = await getUserByEmail(email);
+  const dispatch = useAppDispatch();
+
+  if (!user) {
+    return <p className="mt-4 text-gray-400">No data available.</p>;
+  } else {
+    // display user information
+    dispatch(setUser(user));
+    return (
+      <p>
+        {user.email} {typeof user}
+      </p>
+    );
+  }
   return (
     <div className="h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative">
       {/* MOBILE */}

@@ -11,20 +11,17 @@ interface UserState {
 }
 
 export default function page() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   useEffect(() => {
     fetchUser();
   }, []);
 
-  const fetchUser = async () => {
-    const response = await fetch("/profile/api");
-    const data = await response.json();
+  const email = "user@nextmail.com";
+  async function fetchUser() {
+    const res = await fetch("/api/user?email=user@nextmail.com");
+    const data = await res.json();
     setUser(data);
-  };
+  }
 
-  return (
-    <div>
-      <>ok</>
-    </div>
-  );
+  return <div>ok</div>;
 }
